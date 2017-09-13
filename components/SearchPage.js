@@ -17,7 +17,7 @@ export default class SearchPage extends Component {
   constructor(props){
     super(props);
     this.state = {
-      searchString: 'london'
+      searchString: ''
     };
   }
 
@@ -26,7 +26,7 @@ export default class SearchPage extends Component {
     this.setState({ searchString: event.nativeEvent.text });
   };
 
-  openSearchModal() {
+  autocompletePlaces() {
    RNGooglePlaces.openAutocompleteModal()
    .then((place) => {
         console.log(place);
@@ -35,6 +35,16 @@ export default class SearchPage extends Component {
    })
    .catch(error => console.log(error.message));  // error is a Javascript Error object
  }
+
+ pickPlace() {
+  RNGooglePlaces.openPlacePickerModal()
+  .then((place) => {
+  console.log(place);
+  // place represents user's selection from the
+  // suggestions and it is a simplified Google Place object.
+  })
+  .catch(error => console.log(error.message));  // error is a Javascript Error object
+}
 
   render() {
     return (
@@ -46,10 +56,10 @@ export default class SearchPage extends Component {
         <TextInput
           style={styles.searchInput}
           value={this.state.searchString}
-          onChange={() => this.openSearchModal()}
+          onChange={() => this.autocompletePlaces()}
           placeholder='Search for your favourite place'/>
         <Button
-          onPress={this._onSearchTextChanged}
+          onPress={() => this.pickPlace()}
           color='#48BBEC'
           title='Go'/>
         </View>
