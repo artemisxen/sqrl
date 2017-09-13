@@ -10,6 +10,7 @@ import {
   ActivityIndicator,
   Image,
 } from 'react-native';
+import RNGooglePlaces from 'react-native-google-places';
 
 
 export default class SearchPage extends Component {
@@ -25,6 +26,16 @@ export default class SearchPage extends Component {
     this.setState({ searchString: event.nativeEvent.text });
   };
 
+  openSearchModal() {
+   RNGooglePlaces.openAutocompleteModal()
+   .then((place) => {
+        console.log(place);
+        // place represents user’s selection from the
+        // suggestions and it is a simplified Google Place object.
+   })
+   .catch(error => console.log(error.message));  // error is a Javascript Error object
+ }
+
   render() {
     return (
       <View style={styles.container}>
@@ -35,10 +46,10 @@ export default class SearchPage extends Component {
         <TextInput
           style={styles.searchInput}
           value={this.state.searchString}
-          onChange={this._onSearchTextChanged}
+          onChange={() => this.openSearchModal()}
           placeholder='Search for your favourite place'/>
         <Button
-          onPress={() => {}}
+          onPress={this._onSearchTextChanged}
           color='#48BBEC'
           title='Go'/>
         </View>
