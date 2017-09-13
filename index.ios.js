@@ -8,12 +8,7 @@ import {
   View,
   NavigatorIOS
 } from 'react-native';
-
-class SearchPage extends Component {
-  render() {
-    return <Text style={styles.description}>I am looking for...</Text>
-  }
-}
+import SearchPage from './components/SearchPage.js'
 
 class Sqrl extends Component {
   render() {
