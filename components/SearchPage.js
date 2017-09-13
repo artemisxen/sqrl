@@ -13,6 +13,18 @@ import {
 
 
 export default class SearchPage extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      searchString: 'london'
+    };
+  }
+
+  _onSearchTextChanged = (event) => {
+    console.log('testing')
+    this.setState({ searchString: event.nativeEvent.text });
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -22,6 +34,8 @@ export default class SearchPage extends Component {
         <View style={styles.flowRight}>
         <TextInput
           style={styles.searchInput}
+          value={this.state.searchString}
+          onChange={this._onSearchTextChanged}
           placeholder='Search for your favourite place'/>
         <Button
           onPress={() => {}}

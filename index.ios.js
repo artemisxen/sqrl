@@ -16,7 +16,7 @@ class Sqrl extends Component {
       <NavigatorIOS
       style={styles.container}
       initialRoute={{
-        title: 'SQRL',
+        title: 'Sqrl',
         component: SearchPage
       }}/>
     )
