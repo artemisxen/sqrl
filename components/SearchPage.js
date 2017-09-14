@@ -26,6 +26,11 @@ export default class SearchPage extends Component {
    .then((place) => {
       this.setState({place: place})
       console.log(this.state.place);
+      this.props.navigator.push({
+        title: 'Place',
+        component: ViewPlace,
+        passProps: {place: this.state.place}
+      });
    })
    .catch(error => console.log(error.message));
  }
@@ -47,15 +52,6 @@ export default class SearchPage extends Component {
           color='#48BBEC'
           title='Go'/>
         </View>
-        <Text>{this.state.place.name}</Text>
-        <Text>{this.state.place.address}</Text>
-        <Text>{this.state.place.types}</Text>
-        <Text>{this.state.place.website}</Text>
-        <Text>rating: {this.state.place.rating}</Text>
-        <Button
-          // onPress={()}
-          color='#48BBEC'
-          title='Save'/>
       </View>
     )
   }

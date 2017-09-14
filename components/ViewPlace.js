@@ -12,14 +12,17 @@ import {
 } from 'react-native';
 
 export default class ViewPlace extends Component {
-  render(props) {
+  render() {
     return (
       <View style={styles.container}>
-        <Text>{props.place.address}</Text>
-        console.log(props.place);
-        // <Text>{props.name}</Text>
-        // <Text>{props.rating}</Text>
-        // <Text>{props.website}</Text>
+        <Text>{this.props.place.name}</Text>
+        <Text>{this.props.place.address}</Text>
+        <Text>{this.props.place.website}</Text>
+        <Text>rating: {this.props.place.rating}</Text>
+        <Button
+          // onPress={()}
+          color='#48BBEC'
+          title='Save'/>
       </View>
     )
   }
