@@ -44,8 +44,8 @@ export default class SearchPage extends Component {
         <View style={styles.flowRight}>
         <TextInput
           style={styles.searchInput}
-          value={this.state.searchString}
-          onChange={() => this.autocompletePlaces()}
+          // value={this.state.searchString}
+          onTouchEnd={() => this.autocompletePlaces()}
           placeholder='Search for your favourite place'/>
         <Button
           onPress={() => this.autocompletePlaces()}
