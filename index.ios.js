@@ -9,6 +9,8 @@ import {
   NavigatorIOS
 } from 'react-native';
 import SearchPage from './components/SearchPage.js'
+import ViewPlace from './components/ViewPlace.js'
+
 
 class Sqrl extends Component {
   render() {

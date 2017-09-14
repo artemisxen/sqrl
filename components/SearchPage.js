@@ -11,40 +11,24 @@ import {
   Image,
 } from 'react-native';
 import RNGooglePlaces from 'react-native-google-places';
-
+import ViewPlace from './ViewPlace.js'
 
 export default class SearchPage extends Component {
   constructor(props){
     super(props);
     this.state = {
-      searchString: ''
+      place: ''
     };
   }
-
-  _onSearchTextChanged = (event) => {
-    console.log('testing')
-    this.setState({ searchString: event.nativeEvent.text });
-  };
 
   autocompletePlaces() {
    RNGooglePlaces.openAutocompleteModal()
    .then((place) => {
-        console.log(place);
-        // place represents user’s selection from the
-        // suggestions and it is a simplified Google Place object.
+      this.setState({place: place})
+      console.log(this.state.place);
    })
-   .catch(error => console.log(error.message));  // error is a Javascript Error object
+   .catch(error => console.log(error.message));
  }
-
- pickPlace() {
-  RNGooglePlaces.openPlacePickerModal()
-  .then((place) => {
-  console.log(place);
-  // place represents user's selection from the
-  // suggestions and it is a simplified Google Place object.
-  })
-  .catch(error => console.log(error.message));  // error is a Javascript Error object
-}
 
   render() {
     return (
@@ -59,10 +43,19 @@ export default class SearchPage extends Component {
           onChange={() => this.autocompletePlaces()}
           placeholder='Search for your favourite place'/>
         <Button
-          onPress={() => this.pickPlace()}
+          onPress={() => this.autocompletePlaces()}
           color='#48BBEC'
           title='Go'/>
         </View>
+        <Text>{this.state.place.name}</Text>
+        <Text>{this.state.place.address}</Text>
+        <Text>{this.state.place.types}</Text>
+        <Text>{this.state.place.website}</Text>
+        <Text>rating: {this.state.place.rating}</Text>
+        <Button
+          // onPress={()}
+          color='#48BBEC'
+          title='Save'/>
       </View>
     )
   }
