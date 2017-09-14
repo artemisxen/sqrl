@@ -20,7 +20,7 @@ export default class ViewPlace extends Component {
         <Text>{this.props.place.website}</Text>
         <Text>rating: {this.props.place.rating}</Text>
         <Button
-          // onPress={()}
+          onPress={() => {}}
           color='#48BBEC'
           title='Save'/>
       </View>
