@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import {
-  StyleSheet,
   Text,
   TextInput,
   View,
@@ -12,6 +11,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import Place from './Place.js';
+import styles from "../styles/Styles.js";
 import { hook } from 'cavy';
 
 class SearchList extends Component {
@@ -42,31 +42,3 @@ class SearchList extends Component {
 }
 
 export default hook(SearchList)
-
-const styles = StyleSheet.create({
-  thumb: {
-    width: 80,
-    height: 80,
-    marginRight: 10
-  },
-  textContainer: {
-    flex: 1
-  },
-  separator: {
-    height: 1,
-    backgroundColor: '#dddddd'
-  },
-  price: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    color: '#48BBEC'
-  },
-  title: {
-    fontSize: 20,
-    color: '#656565'
-  },
-  rowContainer: {
-    flexDirection: 'row',
-    padding: 10
-  },
-});

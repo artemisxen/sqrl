@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import {
-  StyleSheet,
   Text,
   TextInput,
   View,
@@ -11,6 +10,7 @@ import {
   TouchableHighlight,
   ActivityIndicator,
 } from 'react-native';
+import styles from "../styles/Styles.js";
 import { hook } from 'cavy';
 
 class Place extends Component {
@@ -36,31 +36,3 @@ class Place extends Component {
 }
 
 export default hook(Place)
-
-const styles = StyleSheet.create({
-  thumb: {
-    width: 80,
-    height: 80,
-    marginRight: 10
-  },
-  textContainer: {
-    flex: 1
-  },
-  separator: {
-    height: 1,
-    backgroundColor: '#dddddd'
-  },
-  price: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    color: '#48BBEC'
-  },
-  title: {
-    fontSize: 20,
-    color: '#656565'
-  },
-  rowContainer: {
-    flexDirection: 'row',
-    padding: 10
-  },
-});

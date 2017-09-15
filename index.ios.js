@@ -9,7 +9,6 @@ import {
   NavigatorIOS
 } from 'react-native';
 import SearchPage from './components/SearchPage.js'
-import ViewPlace from './components/ViewPlace.js'
 import { Tester, TestHookStore } from 'cavy'
 import SearchPlacesSpec from './specs/SearchPlacesSpec'
 const testHookStore = new TestHookStore();
