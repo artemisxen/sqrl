@@ -10,6 +10,12 @@ class SearchList extends Component {
 
   _onPressItem = (index) => {
     console.log("Pressed row: "+index);
+    console.log(this.props.places[index]);
+    this.props.navigator.push({
+    title: 'Selected Place',
+    component: Place,
+    passProps: {item: this.props.places[index]}
+    });
   };
 
   _keyExtractor = (item, index) => index;

@@ -6,7 +6,7 @@ import {Text, TextInput, View, TouchableHighlight} from 'react-native';
 import { hook } from 'cavy';
 
 class Place extends Component {
-  
+
   _onPress = () => {
     this.props.onPressItem(this.props.index);
   }
