@@ -22,7 +22,11 @@ export default class SearchPage extends Component {
   }
 
   autocompletePlaces() {
-   RNGooglePlaces.openAutocompleteModal()
+   RNGooglePlaces.openAutocompleteModal({
+     country : 'GB'
+   }
+
+   )
    .then((place) => {
       this.setState({place: place})
       console.log(this.state.place);
