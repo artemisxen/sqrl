@@ -10,7 +10,20 @@ import {
 } from 'react-native';
 import SearchPage from './components/SearchPage.js'
 import ViewPlace from './components/ViewPlace.js'
+import { Tester, TestHookStore } from 'cavy'
+import SearchPlacesSpec from './specs/SearchPlacesSpec'
+const testHookStore = new TestHookStore();
 
+
+class AppWrapper extends Component {
+  render(){
+    return (
+      <Tester specs = {[SearchPlacesSpec]} store={testHookStore} waitTime={2000}>
+      <Sqrl/>
+      </Tester>
+    )
+  }
+}
 
 class Sqrl extends Component {
   render() {
@@ -37,4 +50,4 @@ const styles = StyleSheet.create({
 },
 });
 
-AppRegistry.registerComponent('Sqrl', () => Sqrl);
+AppRegistry.registerComponent('Sqrl', () => AppWrapper);

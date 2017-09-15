@@ -10,12 +10,13 @@ import {
   ActivityIndicator,
   Image,
 } from 'react-native';
+import { hook } from 'cavy';
 
-export default class ViewPlace extends Component {
+class ViewPlace extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>{this.props.place.name}</Text>
+        <Text ref={this.props.generateTestHook('ViewPlace.${this.props.place.name}')}>{this.props.place.name}</Text>
         <Text>{this.props.place.address}</Text>
         <Text>{this.props.place.website}</Text>
         <Text>rating: {this.props.place.rating}</Text>
@@ -28,6 +29,8 @@ export default class ViewPlace extends Component {
   }
 }
 
+
+export default hook(ViewPlace)
 const styles = StyleSheet.create({
   description: {
     marginBottom: 20,

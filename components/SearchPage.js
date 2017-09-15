@@ -11,9 +11,10 @@ import {
   Image,
 } from 'react-native';
 import RNGooglePlaces from 'react-native-google-places';
-import ViewPlace from './ViewPlace.js'
+import ViewPlace from './ViewPlace.js';
+import { hook } from 'cavy';
 
-export default class SearchPage extends Component {
+ class SearchPage extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -25,7 +26,6 @@ export default class SearchPage extends Component {
    RNGooglePlaces.openAutocompleteModal({
      country : 'GB'
    }
-
    )
    .then((place) => {
       this.setState({place: place})
@@ -42,13 +42,14 @@ export default class SearchPage extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.description}>
+        <Text ref={this.props.generateTestHook('SearchPage.Text')}
+        style={styles.description}>
           I am looking for...
         </Text>
         <View style={styles.flowRight}>
         <TextInput
+          ref={this.props.generateTestHook('SearchPage.TextInput')}
           style={styles.searchInput}
-          // value={this.state.searchString}
           onTouchEnd={() => this.autocompletePlaces()}
           placeholder='Search for your favourite place'/>
         </View>
@@ -57,6 +58,7 @@ export default class SearchPage extends Component {
   }
 }
 
+export default hook(SearchPage);
 const styles = StyleSheet.create({
   description: {
     marginBottom: 20,
