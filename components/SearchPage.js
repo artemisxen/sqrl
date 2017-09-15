@@ -12,46 +12,51 @@ import {
 } from 'react-native';
 import RNGooglePlaces from 'react-native-google-places';
 import ViewPlace from './ViewPlace.js';
+import SearchList from './SearchList.js';
 import { hook } from 'cavy';
 
  class SearchPage extends Component {
   constructor(props){
     super(props);
     this.state = {
-      place: ''
+      searchString: '',
+      places: ''
     };
   }
 
-  autocompletePlaces() {
-   RNGooglePlaces.openAutocompleteModal({
-     country : 'GB'
-   }
-   )
-   .then((place) => {
-      this.setState({place: place})
-      console.log(this.state.place);
+  _autocompletePlaces = (event) => {
+    this.setState({ searchString: event.nativeEvent.text });
+    RNGooglePlaces.getAutocompletePredictions(this.state.searchString, {
+      country: 'GB'
+    })
+    .then((places) => {
+      console.log(places);
+      this.setState({places: places})
       this.props.navigator.push({
-        title: 'Place',
-        component: ViewPlace,
-        passProps: {place: this.state.place}
+      title: 'Search list',
+      component: SearchList,
+      passProps: {places: this.state.places}
       });
-   })
-   .catch(error => console.log(error.message));
- }
+    })
+    .catch(error => console.log(error.message));
+  }
 
   render() {
     return (
       <View style={styles.container}>
-        <Text ref={this.props.generateTestHook('SearchPage.Text')}
+        <Text
+        ref={this.props.generateTestHook('SearchPage.Text')}
         style={styles.description}>
           I am looking for...
         </Text>
         <View style={styles.flowRight}>
-        <Button
+        <TextInput
           ref={this.props.generateTestHook('SearchPage.TextInput')}
           style={styles.searchInput}
-          onPress={() => this.autocompletePlaces()}
-          title='Search for your favourite place'/>
+          value={this.state.searchString}
+          onChange={this._autocompletePlaces}
+          // onTouchEnd={() => this.autocompletePlaces()}
+          placeholder='Search for your favourite place'/>
         </View>
       </View>
     )
