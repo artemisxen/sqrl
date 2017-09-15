@@ -1,19 +1,12 @@
 'use strict';
 
 import React, { Component } from 'react';
-import {
-  Text,
-  TextInput,
-  View,
-  Button,
-  FlatList,
-  TouchableHighlight,
-  ActivityIndicator,
-} from 'react-native';
 import styles from "../styles/Styles.js";
+import {Text, TextInput, View, TouchableHighlight} from 'react-native';
 import { hook } from 'cavy';
 
 class Place extends Component {
+  
   _onPress = () => {
     this.props.onPressItem(this.props.index);
   }

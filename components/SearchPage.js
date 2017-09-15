@@ -1,17 +1,10 @@
 'use strict';
 
 import React, { Component } from 'react';
-import {
-  Text,
-  TextInput,
-  View,
-  Button,
-  ActivityIndicator,
-  Image,
-} from 'react-native';
+import styles from "../styles/Styles.js";
+import { Text, TextInput, View, Button, ActivityIndicator } from 'react-native';
 import RNGooglePlaces from 'react-native-google-places';
 import SearchList from './SearchList.js';
-import styles from "../styles/Styles.js";
 import { hook } from 'cavy';
 
  class SearchPage extends Component {
@@ -44,17 +37,17 @@ import { hook } from 'cavy';
     return (
       <View style={styles.container}>
         <Text
-        ref={this.props.generateTestHook('SearchPage.Text')}
-        style={styles.description}>
+          ref={this.props.generateTestHook('SearchPage.Text')}
+          style={styles.description}>
           I am looking for...
         </Text>
         <View style={styles.flowRight}>
-        <TextInput
-          ref={this.props.generateTestHook('SearchPage.TextInput')}
-          style={styles.searchInput}
-          value={this.state.searchString}
-          onChange={this._autocompletePlaces}
-          placeholder='Search for your favourite place'/>
+          <TextInput
+            ref={this.props.generateTestHook('SearchPage.TextInput')}
+            style={styles.searchInput}
+            value={this.state.searchString}
+            onChange={this._autocompletePlaces}
+            placeholder='Search for your favourite place'/>
         </View>
       </View>
     )
