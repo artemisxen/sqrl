@@ -51,10 +51,6 @@ export default class SearchPage extends Component {
           // value={this.state.searchString}
           onTouchEnd={() => this.autocompletePlaces()}
           placeholder='Search for your favourite place'/>
-        <Button
-          onPress={() => this.autocompletePlaces()}
-          color='#48BBEC'
-          title='Go'/>
         </View>
       </View>
     )
