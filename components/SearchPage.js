@@ -47,11 +47,11 @@ import { hook } from 'cavy';
           I am looking for...
         </Text>
         <View style={styles.flowRight}>
-        <TextInput
+        <Button
           ref={this.props.generateTestHook('SearchPage.TextInput')}
           style={styles.searchInput}
-          onTouchEnd={() => this.autocompletePlaces()}
-          placeholder='Search for your favourite place'/>
+          onPress={() => this.autocompletePlaces()}
+          title='Search for your favourite place'/>
         </View>
       </View>
     )
