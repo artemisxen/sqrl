@@ -13,7 +13,7 @@ const styles = {
     flowRight: {
     flexDirection: 'column',
     alignItems: 'center',
-    alignSelf: 'stretch',
+    alignSelf: 'stretch'
   },
   searchInput: {
     height: 36,
@@ -24,7 +24,7 @@ const styles = {
     borderWidth: 1,
     borderColor: '#48BBEC',
     borderRadius: 8,
-    color: '#48BBEC',
+    color: '#48BBEC'
   },
   thumb: {
     width: 80,
@@ -50,7 +50,6 @@ const styles = {
     flexDirection: 'column',
     flex: 3,
     textAlign: 'center'
-
   }
 };
 
