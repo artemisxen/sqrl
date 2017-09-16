@@ -11,7 +11,7 @@ const styles = {
     alignItems: 'center'
   },
     flowRight: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
     alignSelf: 'stretch',
   },
@@ -46,6 +46,12 @@ const styles = {
     flexDirection: 'row',
     padding: 10
   },
+  list: {
+    flexDirection: 'column',
+    flex: 3,
+    textAlign: 'center'
+
+  }
 };
 
 export default styles;

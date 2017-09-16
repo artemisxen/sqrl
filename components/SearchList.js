@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import styles from "../styles/Styles.js";
-import {Text, TextInput, View, FlatList} from 'react-native';
+import {Text, TextInput, View, StyleSheet,FlatList} from 'react-native';
 import Place from './Place.js';
 import { hook } from 'cavy';
 

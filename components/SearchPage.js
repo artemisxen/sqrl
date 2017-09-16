@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import styles from "../styles/Styles.js";
-import { Text, TextInput, View, Button, ActivityIndicator } from 'react-native';
+import { Text, TextInput, View, Button,FlatList, ActivityIndicator } from 'react-native';
 import RNGooglePlaces from 'react-native-google-places';
 import SearchList from './SearchList.js';
 import { hook } from 'cavy';
@@ -24,11 +24,12 @@ import { hook } from 'cavy';
     .then((places) => {
       console.log(places);
       this.setState({places: places})
-      this.props.navigator.push({
-      title: 'Search list',
-      component: SearchList,
-      passProps: {places: this.state.places}
-      });
+      // this.props.navigator.push({
+      // title: 'Search list',
+      // component: SearchList,
+      // passProps: {places: this.state.places}
+      // });
+
     })
     .catch(error => console.log(error.message));
   }
@@ -48,6 +49,10 @@ import { hook } from 'cavy';
             value={this.state.searchString}
             onChange={this._autocompletePlaces}
             placeholder='Search for your favourite place'/>
+            <View>
+              <SearchList style={styles.list}
+              places={this.state.places}/>
+            </View>
         </View>
       </View>
     )
