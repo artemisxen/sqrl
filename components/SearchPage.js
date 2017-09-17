@@ -48,7 +48,6 @@ import { hook } from 'cavy';
             ref={this.props.generateTestHook('SearchPage.TextInput')}
             style={styles.searchInput}
             value={this.state.searchString}
-
             onChange={this._autocompletePlaces}
             placeholder='Search for your favourite place'/>
             <View>
