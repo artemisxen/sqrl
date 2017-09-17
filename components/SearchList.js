@@ -9,8 +9,8 @@ import { hook } from 'cavy';
 class SearchList extends Component {
 
   _onPressItem = (index) => {
-    console.log("Pressed row: "+index);
-    console.log(this.props.places[index]);
+    // console.log("Pressed row: "+index);
+    // console.log(this.props.places[index]);
     this.props.navigator.push({
     title: 'Selected Place',
     component: Place,
@@ -24,14 +24,17 @@ class SearchList extends Component {
     <Place
     item={item}
     index={index}
+    navigator={navigator}
     onPressItem={this._onPressItem}
     />
+
   );
 
   render() {
     return (
       <FlatList
       data={this.props.places}
+      navigator={this.props.navigator}
       keyExtractor={this._keyExtractor}
       renderItem={this._renderItem}
       />

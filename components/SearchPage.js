@@ -23,6 +23,7 @@ import { hook } from 'cavy';
     })
     .then((places) => {
       console.log(places);
+      console.log(this.props)
       this.setState({places: places})
       // this.props.navigator.push({
       // title: 'Search list',
@@ -47,10 +48,12 @@ import { hook } from 'cavy';
             ref={this.props.generateTestHook('SearchPage.TextInput')}
             style={styles.searchInput}
             value={this.state.searchString}
+
             onChange={this._autocompletePlaces}
             placeholder='Search for your favourite place'/>
             <View>
               <SearchList style={styles.list}
+              navigator={this.props.navigator}
               places={this.state.places}/>
             </View>
         </View>
