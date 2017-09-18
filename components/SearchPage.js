@@ -22,20 +22,13 @@ import { hook } from 'cavy';
       country: 'GB'
     })
     .then((places) => {
-      console.log(places);
-      console.log(this.props)
       this.setState({places: places})
-      // this.props.navigator.push({
-      // title: 'Search list',
-      // component: SearchList,
-      // passProps: {places: this.state.places}
-      // });
-
     })
     .catch(error => console.log(error.message));
   }
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         <Text
@@ -52,7 +45,7 @@ import { hook } from 'cavy';
             placeholder='Search for your favourite place'/>
             <View>
               <SearchList style={styles.list}
-              navigator={this.props.navigator}
+              navigation={this.props.navigation}
               places={this.state.places}/>
             </View>
         </View>

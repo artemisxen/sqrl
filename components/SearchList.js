@@ -4,18 +4,17 @@ import React, { Component } from 'react';
 import styles from "../styles/Styles.js";
 import {Text, TextInput, View, StyleSheet,FlatList} from 'react-native';
 import Place from './Place.js';
+import RNGooglePlaces from 'react-native-google-places';
 import { hook } from 'cavy';
+import ViewPlace from './ViewPlace.js';
+
 
 class SearchList extends Component {
 
   _onPressItem = (index) => {
-    // console.log("Pressed row: "+index);
-    // console.log(this.props.places[index]);
-    this.props.navigator.push({
-    title: 'Selected Place',
-    component: Place,
-    passProps: {item: this.props.places[index]}
-    });
+    RNGooglePlaces.lookUpPlaceByID(this.props.places[index].placeID)
+    .then((results) => this.props.navigation.navigate('ViewPlace', {place: results}))
+    .catch((error) => console.log(error.message));
   };
 
   _keyExtractor = (item, index) => index;
