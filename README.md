@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/artemisxen/sqrl.svg?branch=master)](https://travis-ci.org/artemisxen/sqrl)
+
 # Sqrl
 
 Are you forever forgetting about recommendations other people have given you? Have you ever realised that you were just around the corner from  place you've been meaning to check out...after you'd already gotten home? This is where Sqrl steps in. With Sqrl, users can bookmark places of interest and receive a timely, location-based reminder when they are in the vicinity. Never miss out on that bakery, book shop or restaurant again.
@@ -132,5 +134,3 @@ I would like to be able to sign up with Facebook
 * [Sapphire Mason-Brown](https://github.com/SaphMB)
 * [Nandini Narasimhan](https://github.com/Nandhini31)
 * [Artemis Xenaki](https://github.com/artemisxen)
-=======
-[![Build Status](https://travis-ci.org/artemisxen/sqrl.svg?branch=master)](https://travis-ci.org/artemisxen/sqrl)
