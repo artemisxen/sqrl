@@ -1,64 +1,57 @@
 'use strict';
 
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  Button,
-  ActivityIndicator,
-  Image,
-} from 'react-native';
+import styles from "../styles/Styles.js";
+import { Text, TextInput, View, Button,FlatList, ActivityIndicator } from 'react-native';
+import RNGooglePlaces from 'react-native-google-places';
+import SearchList from './SearchList.js';
+import { hook } from 'cavy';
 
+ class SearchPage extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      searchString: '',
+      places: ''
+    };
+  }
 
-export default class SearchPage extends Component {
+  _autocompletePlaces = (event) => {
+    this.setState({ searchString: event.nativeEvent.text });
+    RNGooglePlaces.getAutocompletePredictions(this.state.searchString, {
+      country: 'GB'
+    })
+    .then((places) => {
+      this.setState({places: places})
+    })
+    .catch(error => console.log(error.message));
+  }
+
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <Text style={styles.description}>
+        <Text
+          ref={this.props.generateTestHook('SearchPage.Text')}
+          style={styles.description}>
           I am looking for...
         </Text>
         <View style={styles.flowRight}>
-        <TextInput
-          style={styles.searchInput}
-          placeholder='Search for your favourite place'/>
-        <Button
-          onPress={() => {}}
-          color='#48BBEC'
-          title='Go'/>
+          <TextInput
+            ref={this.props.generateTestHook('SearchPage.TextInput')}
+            style={styles.searchInput}
+            onChange={this._autocompletePlaces}
+            value={this.state.searchString}
+            placeholder='Search for your favourite place'/>
+            <View>
+              <SearchList style={styles.list}
+              navigation={this.props.navigation}
+              places={this.state.places}/>
+            </View>
         </View>
       </View>
     )
   }
 }
 
-const styles = StyleSheet.create({
-  description: {
-    marginBottom: 20,
-    fontSize: 18,
-    textAlign: 'center',
-    color: '#656565'
-  },
-  container: {
-    padding: 30,
-    marginTop: 65,
-    alignItems: 'center'
-  },
-    flowRight: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignSelf: 'stretch',
-  },
-  searchInput: {
-    height: 36,
-    padding: 4,
-    marginRight: 5,
-    flexGrow: 1,
-    fontSize: 18,
-    borderWidth: 1,
-    borderColor: '#48BBEC',
-    borderRadius: 8,
-    color: '#48BBEC',
-  },
-});
+export default hook(SearchPage);

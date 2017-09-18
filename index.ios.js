@@ -1,11 +1,16 @@
 'use strict';
 
 import React, { Component } from 'react';
-
-import { AppRegistry,
-  View,
-  StyleSheet, } from 'react-native';
-
+import { AppRegistry, StyleSheet, Text, View } from 'react-native';
+import { App } from './app/App.js'
+import { Tester, TestHookStore } from 'cavy'
+import SearchPlacesSpec from './specs/SearchPlacesSpec'
+import firebase from 'firebase';
+import Header from './components/Header';
+import Button from './components/Button';
+import Spinner from './components/Spinner';
+import LoginForm from './components/LoginForm';
+import SearchPage from './components/SearchPage.js';
 import { API_KEY,
   AUTH_DOMAIN,
   DATABASE_URL,
@@ -13,12 +18,7 @@ import { API_KEY,
   MESSAGING_SENDER_ID,
 } from 'react-native-dotenv';
 
-import firebase from 'firebase';
-import Header from './components/Header';
-import Button from './components/Button';
-import Spinner from './components/Spinner';
-import LoginForm from './components/LoginForm';
-import SearchPage from './components/SearchPage.js';
+const testHookStore = new TestHookStore();
 
 class Sqrl extends Component {
   state = { loggedIn: null };
@@ -54,26 +54,13 @@ class Sqrl extends Component {
     }
   }
 
-  render() {
+  render(){
     return (
-      <View>
-        <Header headerText="SQRL" />
-        {this.renderContent()}
-      </View>
+      <Tester specs = {[SearchPlacesSpec]} store={testHookStore} waitTime={2000}>
+        <App />
+      </Tester>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  description: {
-    fontSize: 18,
-    textAlign: 'center',
-    color: '#656565',
-    marginTop: 65,
-  },
-  container: {
-  flex: 1,
-},
-});
 
 AppRegistry.registerComponent('Sqrl', () => Sqrl);
