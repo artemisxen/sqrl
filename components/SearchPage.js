@@ -40,8 +40,8 @@ import { hook } from 'cavy';
           <TextInput
             ref={this.props.generateTestHook('SearchPage.TextInput')}
             style={styles.searchInput}
-            value={this.state.searchString}
             onChange={this._autocompletePlaces}
+            value={this.state.searchString}
             placeholder='Search for your favourite place'/>
             <View>
               <SearchList style={styles.list}
