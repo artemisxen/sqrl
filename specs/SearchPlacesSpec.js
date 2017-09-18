@@ -10,4 +10,11 @@ export default function(spec){
       await spec.exists('SearchPage.TextInput');
     });
   });
+
+  spec.describe('Search for a place',function(){
+    spec.it('Can search for a place',async function(){
+      await spec.exists('SearchPage.TextInput');
+      await spec.fillIn('SearchPage.TextInput', 'Makers Academy');
+    });
+  });
 }

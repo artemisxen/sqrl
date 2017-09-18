@@ -21,22 +21,17 @@ class SearchList extends Component {
 
   _renderItem = ({item, index}) => (
     <Place
-    item={item}
-    index={index}
-    navigator={navigator}
-    onPressItem={this._onPressItem}
-    />
-
+      item={item}
+      index={index}
+      onPressItem={this._onPressItem}/>
   );
 
   render() {
     return (
       <FlatList
-      data={this.props.places}
-      navigator={this.props.navigator}
-      keyExtractor={this._keyExtractor}
-      renderItem={this._renderItem}
-      />
+        data={this.props.places}
+        keyExtractor={this._keyExtractor}
+        renderItem={this._renderItem}/>
     );
   }
 }

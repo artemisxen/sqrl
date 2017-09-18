@@ -8,7 +8,6 @@ import { hook } from 'cavy';
 
 class ViewPlace extends Component {
   render() {
-    console.log(this.props.navigation.state.params.place);
     const place = this.props.navigation.state.params.place
     return (
       <View style={styles.container}>
@@ -17,31 +16,24 @@ class ViewPlace extends Component {
         <Text>{place.website}</Text>
         <Text>rating: {place.rating}</Text>
         <View>
-        <MapView
-        style={styles.map}
-        initialRegion={{
-          latitude: place.latitude,
-           longitude: place.longitude,
-           latitudeDelta: 0.015,
-           longitudeDelta: 0.0121,
-          }}
-          >
-          <MapView.Marker
-          coordinate={{latitude: place.latitude,
-            longitude: place.longitude}}
-            title={place.name}
-            />
-            </MapView>
+          <MapView
+            style={styles.map}
+            initialRegion={{
+              latitude: place.latitude,
+              longitude: place.longitude,
+              latitudeDelta: 0.015,
+              longitudeDelta: 0.0121}}>
+            <MapView.Marker
+              coordinate={{latitude: place.latitude,
+              longitude: place.longitude}}
+              title={place.name}/>
+          </MapView>
         </View>
         <Text> Is this the place you are looking for?</Text>
         <Button
           onPress={() => {}}
           color='#48BBEC'
           title='Save'/>
-        <Button
-          onPress={() => {}}
-          color='#48BBEC'
-          title='Go back'/>
       </View>
     )
   }
