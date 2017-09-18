@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { Text, TextInput, View, Button, ActivityIndicator, Image } from 'react-native';
 import styles from "../styles/Styles.js";
+import MapView from 'react-native-maps';
 import { hook } from 'cavy';
 
 class ViewPlace extends Component {
@@ -15,15 +16,32 @@ class ViewPlace extends Component {
         <Text>{place.address}</Text>
         <Text>{place.website}</Text>
         <Text>rating: {place.rating}</Text>
+        <View>
+        <MapView
+        style={styles.map}
+        initialRegion={{
+          latitude: place.latitude,
+           longitude: place.longitude,
+           latitudeDelta: 0.015,
+           longitudeDelta: 0.0121,
+          }}
+          >
+          <MapView.Marker
+          coordinate={{latitude: place.latitude,
+            longitude: place.longitude}}
+            title={place.name}
+            />
+            </MapView>
+        </View>
         <Text> Is this the place you are looking for?</Text>
         <Button
           onPress={() => {}}
           color='#48BBEC'
-          title='Yes, save'/>
+          title='Save'/>
         <Button
           onPress={() => {}}
           color='#48BBEC'
-          title='No, go back'/>
+          title='Go back'/>
       </View>
     )
   }

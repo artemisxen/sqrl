@@ -50,7 +50,16 @@ const styles = {
     flexDirection: 'column',
     flex: 3,
     textAlign: 'center'
-  }
+  },
+  map: {
+    position: 'relative',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: 250,
+    height: 250
+  },
 };
 
 export default styles;
