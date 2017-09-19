@@ -1,8 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import styles from "../styles/Styles.js";
-import {Text, TextInput, View, TouchableHighlight} from 'react-native';
+import { ListItem, Text } from 'native-base';
 import { hook } from 'cavy';
 
 class Place extends Component {
@@ -12,16 +11,9 @@ class Place extends Component {
 
   render() {
     return (
-      <TouchableHighlight
-        onPress={this._onPress}
-        underlayColor='#dddddd'>
-        <View>
-          <View style={styles.rowContainer}>
-            <Text style={styles.title}>{this.props.item.fullText}</Text>
-          </View>
-          <View style={styles.separator}/>
-        </View>
-      </TouchableHighlight>
+      <ListItem button onPress={this._onPress}>
+        <Text>{this.props.item.fullText}</Text>
+      </ListItem>
     );
   }
 }

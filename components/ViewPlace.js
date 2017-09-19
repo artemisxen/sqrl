@@ -1,8 +1,8 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { Text, TextInput, View, Button, ActivityIndicator, Image, AlertIOS } from 'react-native';
-import styles from "../styles/Styles.js";
+import { ActivityIndicator, Image, AlertIOS } from 'react-native';
+import { Card, CardItem, Text, Button, Icon, Left, Body, Right } from 'native-base';
 import MapView from 'react-native-maps';
 import { hook } from 'cavy';
 import firebase from 'firebase';
@@ -29,14 +29,26 @@ class ViewPlace extends Component {
   render() {
     const place = this.props.navigation.state.params.place
     return (
-      <View style={styles.container}>
-        <Text ref={this.props.generateTestHook('ViewPlace.${this.props.place.name}')}>{place.name}</Text>
-        <Text>{place.address}</Text>
-        <Text>{place.website}</Text>
-        <Text>rating: {place.rating}</Text>
-        <View>
+      <Card>
+        <CardItem>
+          <Body>
+            <Text ref={this.props.generateTestHook('ViewPlace.${this.props.place.name}')}>{place.name}</Text>
+            <Text>{place.address}</Text>
+            <Text>{place.website}</Text>
+            <Text>rating: {place.rating}</Text>
+          </Body>
+        </CardItem>
+        <CardItem cardBody>
           <MapView
-            style={styles.map}
+            style={{
+              position: 'relative',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              width: 250,
+              height: 250
+            }}
             initialRegion={{
               latitude: place.latitude,
               longitude: place.longitude,
@@ -45,16 +57,17 @@ class ViewPlace extends Component {
             <MapView.Marker
               coordinate={{latitude: place.latitude,
               longitude: place.longitude}}
-              title={place.name}/>
+              title={place.name} />
           </MapView>
-        </View>
-        <Text> Is this the place you are looking for?</Text>
-        <Button
-          onPress={this._storePlace}
-          color='#48BBEC'
-          title='Save'/>
-      </View>
-    )
+        </CardItem>
+        <CardItem>
+          <Text>Is this the place you are looking for?</Text>
+          <Button onPress={this._storePlace}>
+            <Text>Save</Text>
+          </Button>
+        </CardItem>
+      </Card>
+    );
   }
 }
 
