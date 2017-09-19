@@ -1,13 +1,31 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { Text, TextInput, View, Button, ActivityIndicator, Image } from 'react-native';
+import { Text, TextInput, View, Button, ActivityIndicator, Image, AlertIOS } from 'react-native';
 import styles from "../styles/Styles.js";
 import MapView from 'react-native-maps';
 import { hook } from 'cavy';
-import SavePlace from './SavePlace.js'
+import firebase from 'firebase';
+
 
 class ViewPlace extends Component {
+  constructor(props){
+    super(props);
+    var itemsRef = firebase.database().ref();
+    console.log(itemsRef);
+  }
+
+  _storePlace = () => {
+    const place = this.props.navigation.state.params.place
+    firebase.database().ref().push({
+    name:place.name,
+    address:place.address,
+    latitue:place.latitude,
+    longitude:place.longitude
+  })
+  AlertIOS.alert('Your place has been successfully saved!')
+  }
+
   render() {
     const place = this.props.navigation.state.params.place
     return (
@@ -32,7 +50,7 @@ class ViewPlace extends Component {
         </View>
         <Text> Is this the place you are looking for?</Text>
         <Button
-          onPress={()=>this.props.navigation.navigate('SavePlace',{place:place})}
+          onPress={this._storePlace}
           color='#48BBEC'
           title='Save'/>
       </View>
