@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, View } from 'react-native';
 import { App } from './app/App.js'
 import { Tester, TestHookStore } from 'cavy'
+import geofire from 'geofire';
 import SearchPlacesSpec from './specs/SearchPlacesSpec'
 import firebase from 'firebase';
 import Header from './components/Header';
@@ -19,12 +20,7 @@ import { API_KEY,
 } from 'react-native-dotenv';
 
 const testHookStore = new TestHookStore();
-
-class Sqrl extends Component {
-  state = { loggedIn: null };
-
-  componentWillMount() {
-    firebase.initializeApp({
+const firebaseApp = firebase.initializeApp({
       apiKey: API_KEY,
       authDomain: AUTH_DOMAIN,
       databaseURL: DATABASE_URL,
@@ -32,6 +28,12 @@ class Sqrl extends Component {
       messagingSenderId: MESSAGING_SENDER_ID
     });
 
+const geofireRef = new geofire(firebase.database().ref())
+
+class Sqrl extends Component {
+  state = { loggedIn: null };
+
+  componentWillMount() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         console.log(user.email);
@@ -46,9 +48,7 @@ class Sqrl extends Component {
   render() {
     switch (this.state.loggedIn) {
       case true:
-      return (
-        <App/>
-      )
+      return <App />
       case false:
         return <LoginForm />;
       default:
@@ -56,13 +56,6 @@ class Sqrl extends Component {
     }
   }
 
-  // render(){
-  //   return (
-  //     <Tester specs = {[SearchPlacesSpec]} store={testHookStore} waitTime={2000}>
-  //       <App />
-  //     </Tester>
-  //   );
-  // }
 }
 
 AppRegistry.registerComponent('Sqrl', () => Sqrl);
