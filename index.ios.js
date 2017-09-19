@@ -32,9 +32,19 @@ const firebaseApp = firebase.initializeApp({
 const geofireRef = new geofire(firebase.database().ref(APP_ID))
 
 class Sqrl extends Component {
-  state = { loggedIn: null };
+  state = { loggedIn: null, position: null };
+  watchID = null
 
   componentWillMount() {
+    this.watchID = navigator.geolocation.watchPosition((position) => {
+      let region = {
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+      }
+      this.setState({position});
+      console.log(this.state.position);
+    });
+
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         console.log(user.email);
