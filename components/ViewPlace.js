@@ -5,6 +5,7 @@ import { Text, TextInput, View, Button, ActivityIndicator, Image } from 'react-n
 import styles from "../styles/Styles.js";
 import MapView from 'react-native-maps';
 import { hook } from 'cavy';
+import SavePlace from './SavePlace.js'
 
 class ViewPlace extends Component {
   render() {
@@ -31,7 +32,7 @@ class ViewPlace extends Component {
         </View>
         <Text> Is this the place you are looking for?</Text>
         <Button
-          onPress={() => {}}
+          onPress={()=>this.props.navigation.navigate('SavePlace',{place:place})}
           color='#48BBEC'
           title='Save'/>
       </View>

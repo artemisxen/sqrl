@@ -55,14 +55,6 @@ class Sqrl extends Component {
         return <Spinner size="large" />;
     }
   }
-
-  // render(){
-  //   return (
-  //     <Tester specs = {[SearchPlacesSpec]} store={testHookStore} waitTime={2000}>
-  //       <App />
-  //     </Tester>
-  //   );
-  // }
 }
 
 AppRegistry.registerComponent('Sqrl', () => Sqrl);

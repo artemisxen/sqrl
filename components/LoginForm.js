@@ -6,6 +6,7 @@ import Card from './Card';
 import CardSection from './CardSection';
 import Input from './Input';
 import Spinner from './Spinner';
+var Firebase = require('firebase');
 
 class LoginForm extends Component {
   state = { email: '', password: '', error: '', loading: false };
