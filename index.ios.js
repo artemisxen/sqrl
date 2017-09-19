@@ -34,18 +34,20 @@ class Sqrl extends Component {
 
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
+        console.log(user.email);
         this.setState({ loggedIn: true });
       } else {
         this.setState({ loggedIn: false });
       }
+      console.log(this.state.loggedIn);
     });
   }
 
-  renderContent() {
+  render() {
     switch (this.state.loggedIn) {
       case true:
       return (
-        <SearchPage />
+        <App/>
       )
       case false:
         return <LoginForm />;
@@ -54,13 +56,13 @@ class Sqrl extends Component {
     }
   }
 
-  render(){
-    return (
-      <Tester specs = {[SearchPlacesSpec]} store={testHookStore} waitTime={2000}>
-        <App />
-      </Tester>
-    );
-  }
+  // render(){
+  //   return (
+  //     <Tester specs = {[SearchPlacesSpec]} store={testHookStore} waitTime={2000}>
+  //       <App />
+  //     </Tester>
+  //   );
+  // }
 }
 
 AppRegistry.registerComponent('Sqrl', () => Sqrl);
