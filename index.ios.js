@@ -17,6 +17,7 @@ import { API_KEY,
   DATABASE_URL,
   STORAGE_BUCKET,
   MESSAGING_SENDER_ID,
+  APP_ID
 } from 'react-native-dotenv';
 
 const testHookStore = new TestHookStore();
@@ -28,7 +29,7 @@ const firebaseApp = firebase.initializeApp({
       messagingSenderId: MESSAGING_SENDER_ID
     });
 
-const geofireRef = new geofire(firebase.database().ref())
+const geofireRef = new geofire(firebase.database().ref(APP_ID))
 
 class Sqrl extends Component {
   state = { loggedIn: null };
@@ -37,6 +38,7 @@ class Sqrl extends Component {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         console.log(user.email);
+        console.log(firebaseApp);
         this.setState({ loggedIn: true });
       } else {
         this.setState({ loggedIn: false });
