@@ -16,14 +16,9 @@ class BookmarkList extends Component {
       rowHasChanged: (row1, row2) => row1 !== row2,
     });
     this.state = {
-      dataSource: dataSource
+      dataSource: dataSource,
+      markers: []
     };
-  }
-
-  _renderItem(task) {
-  return (
-    <Bookmark task={task} />
-    );
   }
 
   listenForTasks(tasksRef) {
@@ -33,6 +28,8 @@ class BookmarkList extends Component {
       tasks.push({
         name: child.val().name,
         address: child.val().address,
+        longitude: child.val().longitude,
+        latitude: child.val().latitude,
         _key: child.key
       });
     });
@@ -45,6 +42,15 @@ class BookmarkList extends Component {
 
   componentDidMount() {
     this.listenForTasks(this.tasksRef);
+  }
+
+  _renderItem(task) {
+    return (
+      <Bookmark
+      task={task}
+      navigation={this.props.navigation}
+      />
+    );
   }
 
   render() {

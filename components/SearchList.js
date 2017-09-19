@@ -17,6 +17,7 @@ class SearchList extends Component {
     .catch((error) => console.log(error.message));
   };
 
+
   _keyExtractor = (item, index) => index;
 
   _renderItem = ({item, index}) => (

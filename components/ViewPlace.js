@@ -18,6 +18,7 @@ class ViewPlace extends Component {
 
   _storePlace = () => {
     const place = this.props.navigation.state.params.place
+    console.log(place);
     firebase.database().ref().push({
     name:place.name,
     address:place.address,
@@ -25,10 +26,6 @@ class ViewPlace extends Component {
     longitude:place.longitude
   })
   AlertIOS.alert('Your place has been successfully saved!')
-  }
-
-  viewplace(){
-    console.log(place.name);
   }
 
   render() {
