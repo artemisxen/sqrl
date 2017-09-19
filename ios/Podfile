@@ -26,6 +26,7 @@ pod 'Yoga', :path => '../node_modules/react-native/ReactCommon/yoga/Yoga.podspec
   pod 'GooglePlacePicker'
   pod 'react-native-google-maps', :path => '../node_modules/react-native-maps'
   pod 'react-native-maps', :path => '../node_modules/react-native-maps'
+  pod 'RNVectorIcons', :path => 'node_modules/react-native-vector-icons'
 
   # Pods for Sqrl
 

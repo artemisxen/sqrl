@@ -2,15 +2,17 @@
 
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, View } from 'react-native';
-import { App } from './app/App.js'
+import { App } from './app/App'
 import { Tester, TestHookStore } from 'cavy'
 import SearchPlacesSpec from './specs/SearchPlacesSpec'
 import firebase from 'firebase';
-import Header from './components/Header';
+import { Container, Content } from 'native-base';
+import HeaderBar from './components/HeaderBar';
 import Button from './components/Button';
 import Spinner from './components/Spinner';
 import LoginForm from './components/LoginForm';
-import SearchPage from './components/SearchPage.js';
+import SearchPage from './components/SearchPage';
+import FooterNav from './components/FooterNav';
 import { API_KEY,
   AUTH_DOMAIN,
   DATABASE_URL,
@@ -47,12 +49,26 @@ class Sqrl extends Component {
     switch (this.state.loggedIn) {
       case true:
       return (
-        <App/>
+          <Container>
+            <HeaderBar />
+            <Content>
+              <App />
+            </Content>
+            <FooterNav />
+          </Container>
       )
       case false:
-        return <LoginForm />;
+        return (
+          <Container>
+            <LoginForm />
+          </Container>
+        )
       default:
-        return <Spinner size="large" />;
+        return (
+          <Container>
+            <Spinner size="large" />
+          </Container>
+        )
     }
   }
 
