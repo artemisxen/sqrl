@@ -43,6 +43,10 @@ import { hook } from 'cavy';
             onChange={this._autocompletePlaces}
             value={this.state.searchString}
             placeholder='Search for your favourite place'/>
+            <Button
+            onPress={() => this.props.navigation.navigate('BookmarkList')}
+            color='#48BBEC'
+            title='View your places'/>
             <View>
               <SearchList style={styles.list}
               navigation={this.props.navigation}

@@ -3,6 +3,7 @@ import { StackNavigator } from 'react-navigation';
 import SearchPage from '../components/SearchPage';
 import ViewPlace from '../components/ViewPlace';
 import LoginForm from '../components/LoginForm';
+import BookmarkList from '../components/BookmarkList.js';
 
 export const App = StackNavigator({
   Search: {
@@ -15,6 +16,12 @@ export const App = StackNavigator({
     screen: ViewPlace,
     navigationOptions: {
       title: 'Place',
+    },
+  },
+  BookmarkList: {
+    screen: BookmarkList,
+    navigationOptions: {
+      title: 'Bookmarks',
     },
   },
 })
