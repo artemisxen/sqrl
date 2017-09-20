@@ -67,31 +67,31 @@ class BookmarkList extends Component {
   render() {
     return (
       <View style={styles.container}>
+      <View>
+      <MapView
+      style={styles.map}
+      initialRegion={{
+        latitude: 51.51734030000001,
+        longitude: -0.0732808,
+        latitudeDelta: 0.015,
+        longitudeDelta: 0.0121
+      }}
+      region={this.state.region}
+      onRegionChange={this.onRegionChange}
+      >
+      {this.state.markers.map(marker => (
+        <MapView.Marker
+        coordinate={marker.coordinates}
+        title={marker.title}
+        />
+      ))}
+      </MapView>
+      </View>
         <ListView
           enableEmptySections={true}
           dataSource={this.state.dataSource}
           renderRow={this._renderItem.bind(this)}
           style={styles.listView}/>
-        <View>
-          <MapView
-            style={styles.map}
-            initialRegion={{
-              latitude: 51.51734030000001,
-              longitude: -0.0732808,
-              latitudeDelta: 0.015,
-              longitudeDelta: 0.0121
-            }}
-            region={this.state.region}
-            onRegionChange={this.onRegionChange}
-            >
-            {this.state.markers.map(marker => (
-            <MapView.Marker
-              coordinate={marker.coordinates}
-              title={marker.title}
-            />
-          ))}
-          </MapView>
-        </View>
       </View>
     );
   }
