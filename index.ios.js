@@ -1,17 +1,17 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View } from 'react-native';
-import { App } from './app/App.js'
+import { AppRegistry, StyleSheet, Text } from 'react-native';
+import { Container, Content, Header, Button, Left, Body, Right, Title, Icon } from 'native-base';
+import { App } from './app/App'
 import { Tester, TestHookStore } from 'cavy'
 import geofire from 'geofire';
 import SearchPlacesSpec from './specs/SearchPlacesSpec'
 import firebase from 'firebase';
-import Header from './components/Header';
-import Button from './components/Button';
 import Spinner from './components/Spinner';
 import LoginForm from './components/LoginForm';
-import SearchPage from './components/SearchPage.js';
+import FooterNav from './components/FooterNav';
+import Welcome from './components/Welcome';
 import { API_KEY,
   AUTH_DOMAIN,
   DATABASE_URL,
@@ -67,28 +67,39 @@ class Sqrl extends Component {
 
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        console.log(user.email);
-        console.log(this.state.position.coords.latitude);
         this.setState({ loggedIn: true });
       } else {
         this.setState({ loggedIn: false });
       }
-      console.log(this.state.loggedIn);
       });
     }
 
   componentWillUnmount() {
     navigator.geolocation.clearWatch(this.watchId);
+    });
   }
 
   render() {
     switch (this.state.loggedIn) {
       case true:
-      return <App />
+      return (
+            <Container>
+              <App />
+              <FooterNav />
+            </Container>
+      );
       case false:
-        return <LoginForm />;
+        return (
+          <Container>
+            <Welcome />
+          </Container>
+        );
       default:
-        return <Spinner size="large" />;
+        return (
+          <Container>
+            <Spinner size="large" />
+          </Container>
+        );
     }
   }
 

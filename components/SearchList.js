@@ -1,8 +1,8 @@
 'use strict';
 
 import React, { Component } from 'react';
-import styles from "../styles/Styles.js";
-import {Text, TextInput, View, StyleSheet,FlatList} from 'react-native';
+import { FlatList, Text, TextInput, } from 'react-native';
+import { List } from 'native-base';
 import Place from './Place.js';
 import RNGooglePlaces from 'react-native-google-places';
 import { hook } from 'cavy';
@@ -17,6 +17,7 @@ class SearchList extends Component {
     .catch((error) => console.log(error.message));
   };
 
+
   _keyExtractor = (item, index) => index;
 
   _renderItem = ({item, index}) => (
@@ -28,12 +29,14 @@ class SearchList extends Component {
 
   render() {
     return (
+      <List>
       <FlatList
         data={this.props.places}
         keyExtractor={this._keyExtractor}
-        renderItem={this._renderItem}/>
+        renderItem={this._renderItem} />
+      </List>
     );
   }
 }
 
-export default hook(SearchList)
+export default hook(SearchList);

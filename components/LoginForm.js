@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
 import firebase from 'firebase';
-import Button from './Button';
-import Card from './Card';
-import CardSection from './CardSection';
-import Input from './Input';
+import { Content, Card, CardItem, Form, Button, Item, Input, Text, Label } from 'native-base';
 import Spinner from './Spinner';
+var Firebase = require('firebase');
 
 class LoginForm extends Component {
   state = { email: '', password: '', error: '', loading: false };
@@ -43,42 +40,44 @@ class LoginForm extends Component {
     }
 
     return (
-      <Button onPress={this.onButtonPress.bind(this)}>
-        Log in
+      <Button block onPress={this.onButtonPress.bind(this)}>
+        <Text>Log in</Text>
       </Button>
     );
   }
 
   render() {
     return (
-      <Card>
-        <CardSection>
-          <Input
-            placeholder="user@gmail.com"
-            label="Email"
-            value={this.state.email}
-            onChangeText={email => this.setState({ email })}
-          />
-        </CardSection>
-
-        <CardSection>
-          <Input
-            secureTextEntry
-            placeholder="password"
-            label="Password"
-            value={this.state.password}
-            onChangeText={password => this.setState({ password })}
-          />
-        </CardSection>
-
-        <Text style={styles.errorTextStyle}>
-          {this.state.error}
-        </Text>
-
-        <CardSection>
+      <Content>
+        <Card>
+          <CardItem style={{ paddingTop: 60 }} />
+          <Form>
+            <Item fixedLabel>
+              <Label>Email</Label>
+              <Input
+                  placeholder="user@gmail.com"
+                  value={this.state.email}
+                  onChangeText={email => this.setState({ email })}
+              />
+            </Item>
+            <Item fixedLabel last>
+              <Label>Password</Label>
+              <Input
+                secureTextEntry
+                placeholder="password"
+                value={this.state.password}
+                onChangeText={password => this.setState({ password })}
+              />
+            </Item>
+          </Form>
+          <CardItem>
+            <Text>
+              {this.state.error}
+            </Text>
+          </CardItem>
           {this.renderButton()}
-        </CardSection>
       </Card>
+    </Content>
     );
   }
 }
