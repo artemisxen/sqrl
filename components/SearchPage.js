@@ -48,9 +48,6 @@ import { hook } from 'cavy';
           >
             <Input placeholder='Search for your favourite place' />
           </Item>
-        </CardItem>
-
-        <CardItem>
           <SearchList
           navigation={this.props.navigation}
           places={this.state.places} />

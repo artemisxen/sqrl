@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { ListItem, Text } from 'native-base';
+import { ListItem, Text, Button } from 'native-base';
 import { hook } from 'cavy';
 
 class Place extends Component {

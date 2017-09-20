@@ -1,6 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
+import { FlatList } from 'react-native';
 import { List } from 'native-base';
 import Place from './Place.js';
 import RNGooglePlaces from 'react-native-google-places';
@@ -27,10 +28,12 @@ class SearchList extends Component {
 
   render() {
     return (
-      <List
+      <List>
+      <FlatList
         data={this.props.places}
         keyExtractor={this._keyExtractor}
         renderItem={this._renderItem} />
+      </List>
     );
   }
 }

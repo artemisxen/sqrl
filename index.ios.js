@@ -45,38 +45,18 @@ class Sqrl extends Component {
     switch (this.state.loggedIn) {
       case true:
       return (
-          <Container>
-            <Header>
-              <Left />
-              <Body>
-                <Title>Sqrl</Title>
-              </Body>
-              <Right>
-                <Button
-                  transparent
-                  onPress={() => firebase.auth().signOut()}
-                >
-                  <Icon name="log-out" />
-                </Button>
-              </Right >
-            </Header>
-            <Content>
+            <Container>
               <App />
-            </Content>
-            <FooterNav />
-          </Container>
+              <FooterNav />
+            </Container>
       );
       case false:
         return (
-          <Container>
             <LoginForm />
-          </Container>
         );
       default:
         return (
-          <Container>
             <Spinner size="large" />
-          </Container>
         );
     }
   }
