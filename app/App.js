@@ -17,4 +17,10 @@ export const App = StackNavigator({
       title: 'Place',
     },
   },
+  LoginForm: {
+    screen: LoginForm,
+    navigationOptions: {
+      title: 'Log In',
+    },
+  },
 });

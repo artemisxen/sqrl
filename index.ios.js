@@ -52,11 +52,15 @@ class Sqrl extends Component {
       );
       case false:
         return (
+          <Container>
             <LoginForm />
+          </Container>
         );
       default:
         return (
+          <Container>
             <Spinner size="large" />
+          </Container>
         );
     }
   }

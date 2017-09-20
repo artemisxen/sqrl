@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { ActivityIndicator, Image, AlertIOS } from 'react-native';
-import { Card, CardItem, Text, Button, Icon, Left, Body, Right } from 'native-base';
+import { Content, Card, CardItem, Text, Button, Body, H3 } from 'native-base';
 import MapView from 'react-native-maps';
 import { hook } from 'cavy';
 import firebase from 'firebase';
@@ -29,44 +29,51 @@ class ViewPlace extends Component {
   render() {
     const place = this.props.navigation.state.params.place
     return (
-      <Card>
-        <CardItem>
-          <Body>
-            <Text ref={this.props.generateTestHook('ViewPlace.${this.props.place.name}')}>{place.name}</Text>
-            <Text>{place.address}</Text>
-            <Text>{place.website}</Text>
-            <Text>rating: {place.rating}</Text>
-          </Body>
-        </CardItem>
-        <CardItem cardBody>
-          <MapView
-            style={{
-              position: 'relative',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              width: 250,
-              height: 250
-            }}
-            initialRegion={{
-              latitude: place.latitude,
-              longitude: place.longitude,
-              latitudeDelta: 0.015,
-              longitudeDelta: 0.0121}}>
-            <MapView.Marker
-              coordinate={{latitude: place.latitude,
-              longitude: place.longitude}}
-              title={place.name} />
-          </MapView>
-        </CardItem>
-        <CardItem>
-          <Text>Is this the place you are looking for?</Text>
-          <Button onPress={this._storePlace}>
-            <Text>Save</Text>
-          </Button>
-        </CardItem>
-      </Card>
+      <Content>
+        <Card>
+          <CardItem>
+            <Body style={{ alignItems: 'center'}}>
+              <H3 ref={this.props.generateTestHook('ViewPlace.${this.props.place.name}')}>
+              {place.name}
+              </H3>
+              <Text>{place.address}</Text>
+              <Text>{place.website}</Text>
+              <Text>Rating: {place.rating}</Text>
+            </Body>
+          </CardItem>
+          <CardItem>
+            <Body style={{ alignItems: 'center'}}>
+              <MapView
+                style={{
+                  width: 250,
+                  height: 250
+                }}
+                initialRegion={{
+                  latitude: place.latitude,
+                  longitude: place.longitude,
+                  latitudeDelta: 0.015,
+                  longitudeDelta: 0.0121}}>
+                <MapView.Marker
+                  coordinate={{latitude: place.latitude,
+                  longitude: place.longitude}}
+                  title={place.name} />
+              </MapView>
+            </Body>
+          </CardItem>
+          <CardItem>
+            <Body style={{ alignItems: 'center'}}>
+              <Text>Is this the place you are looking for?</Text>
+            </Body>
+          </CardItem>
+          <CardItem>
+            <Body>
+              <Button block onPress={this._storePlace}>
+                <Text>Save</Text>
+              </Button>
+            </Body>
+          </CardItem>
+        </Card>
+      </Content>
     );
   }
 }
