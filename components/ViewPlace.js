@@ -6,6 +6,7 @@ import styles from "../styles/Styles.js";
 import MapView from 'react-native-maps';
 import { hook } from 'cavy';
 import firebase from 'firebase';
+import BookmarkList from './BookmarkList.js';
 
 
 class ViewPlace extends Component {
@@ -17,10 +18,11 @@ class ViewPlace extends Component {
 
   _storePlace = () => {
     const place = this.props.navigation.state.params.place
+    console.log(place);
     firebase.database().ref().push({
     name:place.name,
     address:place.address,
-    latitue:place.latitude,
+    latitude:place.latitude,
     longitude:place.longitude
   })
   AlertIOS.alert('Your place has been successfully saved!')
@@ -48,7 +50,7 @@ class ViewPlace extends Component {
               title={place.name}/>
           </MapView>
         </View>
-        <Text> Is this the place you are looking for?</Text>
+        <Text>Is this the place you are looking for?</Text>
         <Button
           onPress={this._storePlace}
           color='#48BBEC'
