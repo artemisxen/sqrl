@@ -1,5 +1,6 @@
 import React from 'react';
 import { StackNavigator } from 'react-navigation';
+import Welcome from '../components/Welcome';
 import SearchPage from '../components/SearchPage';
 import ViewPlace from '../components/ViewPlace';
 import LoginForm from '../components/LoginForm';
@@ -15,12 +16,6 @@ export const App = StackNavigator({
     screen: ViewPlace,
     navigationOptions: {
       title: 'Place',
-    },
-  },
-  LoginForm: {
-    screen: LoginForm,
-    navigationOptions: {
-      title: 'Log In',
     },
   },
 });

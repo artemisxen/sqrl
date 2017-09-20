@@ -11,7 +11,7 @@ export default class FooterNav extends Component {
             <Icon name="pin" />
             <Text>Alerts</Text>
           </Button>
-            <Button vertical active>
+            <Button vertical>
               <Icon name="add" />
               <Text>Add</Text>
             </Button>

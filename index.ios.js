@@ -53,7 +53,7 @@ class Sqrl extends Component {
       case false:
         return (
           <Container>
-            <LoginForm />
+            <Welcome />
           </Container>
         );
       default:
