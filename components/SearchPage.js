@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 import { Card, CardItem, Text, Input, Item } from 'native-base';
 import RNGooglePlaces from 'react-native-google-places';
 import SearchList from './SearchList.js';
@@ -40,17 +40,19 @@ import { hook } from 'cavy';
         </CardItem>
 
         <CardItem>
-          <Item
-            regular
-            ref={this.props.generateTestHook('SearchPage.TextInput')}
-            onChange={this._autocompletePlaces}
-            value={this.state.searchString}
-          >
-            <Input placeholder='Search for your favourite place' />
+          <Item regular>
+            <Input
+              ref={this.props.generateTestHook('SearchPage.TextInput')}
+              onChange={this._autocompletePlaces}
+              value={this.state.searchString}
+              placeholder='Search for your favourite place'
+            />
           </Item>
+        </CardItem>
+        <CardItem>
           <SearchList
-          navigation={this.props.navigation}
-          places={this.state.places} />
+            navigation={this.props.navigation}
+            places={this.state.places}/>
         </CardItem>
 
       </Card>

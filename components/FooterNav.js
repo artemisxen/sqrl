@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Footer, FooterTab, Button, Icon, Text } from 'native-base';
+import { Container, Footer, FooterTab, Button, Icon, Text } from 'native-base';
 import firebase from 'firebase';
 
 export default class FooterNav extends Component {

@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, Text, TextInput, } from 'react-native';
 import { List } from 'native-base';
 import Place from './Place.js';
 import RNGooglePlaces from 'react-native-google-places';
@@ -38,4 +38,4 @@ class SearchList extends Component {
   }
 }
 
-export default hook(SearchList)
+export default hook(SearchList);
