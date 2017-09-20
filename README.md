@@ -27,6 +27,10 @@ $ brew install node
 # Install the Javascript dependencies
 $ npm install
 ```
+```
+# Link the Javascript dependencies
+$ react-native link
+```
 
 #### CocoaPods
 

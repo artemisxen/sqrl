@@ -16,8 +16,7 @@ import { API_KEY,
   AUTH_DOMAIN,
   DATABASE_URL,
   STORAGE_BUCKET,
-  MESSAGING_SENDER_ID,
-  APP_ID
+  MESSAGING_SENDER_ID
 } from 'react-native-dotenv';
 
 const testHookStore = new TestHookStore();
@@ -76,7 +75,6 @@ class Sqrl extends Component {
 
   componentWillUnmount() {
     navigator.geolocation.clearWatch(this.watchId);
-    });
   }
 
   render() {
