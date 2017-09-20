@@ -4,6 +4,10 @@ import Welcome from '../components/Welcome';
 import SearchPage from '../components/SearchPage';
 import ViewPlace from '../components/ViewPlace';
 import LoginForm from '../components/LoginForm';
+import BookmarkList from '../components/BookmarkList.js';
+import ViewBookmark from '../components/ViewBookmark.js';
+import Bookmark from '../components/Bookmark.js';
+
 
 export const App = StackNavigator({
   Search: {
@@ -16,6 +20,18 @@ export const App = StackNavigator({
     screen: ViewPlace,
     navigationOptions: {
       title: 'Place',
+    },
+  },
+  BookmarkList: {
+    screen: BookmarkList,
+    navigationOptions: {
+      title: 'Bookmarks',
+    },
+  },
+  ViewBookmark: {
+    screen: ViewBookmark,
+    navigationOptions: {
+      title: 'Bookmark',
     },
   },
 });

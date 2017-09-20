@@ -28,7 +28,6 @@ import { hook } from 'cavy';
   }
 
   render() {
-    const { navigate } = this.props.navigation;
     return (
       <Card>
 
@@ -56,6 +55,7 @@ import { hook } from 'cavy';
         </CardItem>
 
       </Card>
+
     )
   }
 }
