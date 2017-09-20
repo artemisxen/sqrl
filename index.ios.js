@@ -5,6 +5,7 @@ import { AppRegistry, StyleSheet, Text } from 'react-native';
 import { Container, Content, Header, Button, Left, Body, Right, Title, Icon } from 'native-base';
 import { App } from './app/App'
 import { Tester, TestHookStore } from 'cavy'
+import geofire from 'geofire';
 import SearchPlacesSpec from './specs/SearchPlacesSpec'
 import firebase from 'firebase';
 import Spinner from './components/Spinner';
@@ -16,20 +17,52 @@ import { API_KEY,
   DATABASE_URL,
   STORAGE_BUCKET,
   MESSAGING_SENDER_ID,
+  APP_ID
 } from 'react-native-dotenv';
 
 const testHookStore = new TestHookStore();
-
-class Sqrl extends Component {
-  state = { loggedIn: null };
-
-  componentWillMount() {
-    firebase.initializeApp({
+const firebaseApp = firebase.initializeApp({
       apiKey: API_KEY,
       authDomain: AUTH_DOMAIN,
       databaseURL: DATABASE_URL,
       storageBucket: STORAGE_BUCKET,
       messagingSenderId: MESSAGING_SENDER_ID
+    });
+
+class Sqrl extends Component {
+  constructor() {
+    super()
+    this.state = { loggedIn: null, position: null };
+    this.watchID = null
+    this.places = null
+    this.nearby = []
+  }
+
+  componentWillMount() {
+    this.watchID = navigator.geolocation.watchPosition((position) => {
+      let region = {
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+      }
+      this.setState({position});
+
+          this.places = firebase.database().ref().orderByChild('latitude').startAt(this.state.position.coords.latitude - 0.001).endAt(this.state.position.coords.latitude + 0.001).on("value", (snapshot) => {
+            var trades = snapshot
+            trades.forEach((child) => {
+
+            if (child.val().latitude < this.state.position.coords.latitude + 0.001 && child.val().latitude > this.state.position.coords.latitude - 0.001) {
+              console.log(child.val().name)
+              this.nearby.push({
+                name: child.val().name,
+                longitude: child.val().longitude,
+                latitude: child.val().latitude,
+                _key: child.key
+              })
+              console.log(this.nearby)
+            }
+          })
+        });
+
     });
 
     firebase.auth().onAuthStateChanged((user) => {
@@ -38,6 +71,11 @@ class Sqrl extends Component {
       } else {
         this.setState({ loggedIn: false });
       }
+      });
+    }
+
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch(this.watchId);
     });
   }
 
@@ -64,6 +102,7 @@ class Sqrl extends Component {
         );
     }
   }
+
 }
 
 AppRegistry.registerComponent('Sqrl', () => Sqrl);
