@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import { Content, Header, Left, Right, Body, Title, Text, Button, Card, CardItem } from 'native-base';
+import { StackNavigator } from 'react-navigation';
+import { Container, Content, Header, Left, Right, Body, Title, Text, Button, Card, CardItem } from 'native-base';
+import LoginForm from '../components/LoginForm';
 
-class Welcome extends Component {
+class WelcomeScreen extends Component {
+  static navigationOptions = {
+   title: 'Welcome',
+  }
+
   render() {
     return (
-        <Content
-          contentContainerStyle={{
-          justifyContent: 'center',
-          alignItems: 'center',
-          paddingTop: 40,
-          paddingHorizontal: 10 }}
-        >
+      <Container>
+        <Content>
           <Card>
             <CardItem>
               <Text>
@@ -18,11 +19,22 @@ class Welcome extends Component {
               </Text>
             </CardItem>
           </Card>
-          <Button>
-            <Text> Sign Up </Text>
+          <Button block onPress={() => this.props.navigation.navigate('LoginForm')}>
+            <Text>Login</Text>
           </Button>
         </Content>
+      </Container>
     );
   }
 }
-export default Welcome;
+
+const WelcomeNav = StackNavigator({
+  Welcome: {
+    screen: WelcomeScreen,
+  },
+  LoginForm: {
+    screen: LoginForm,
+  },
+});
+
+export default WelcomeNav;

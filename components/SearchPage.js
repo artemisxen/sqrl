@@ -1,8 +1,8 @@
 'use strict';
 
 import React, { Component } from 'react';
-import styles from "../styles/Styles.js";
-import { Text, TextInput, View, Button,FlatList, ActivityIndicator } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
+import { Card, CardItem, Text, Input, Item } from 'native-base';
 import RNGooglePlaces from 'react-native-google-places';
 import SearchList from './SearchList.js';
 import { hook } from 'cavy';
@@ -29,30 +29,33 @@ import { hook } from 'cavy';
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text
-          ref={this.props.generateTestHook('SearchPage.Text')}
-          style={styles.description}>
-          I am looking for...
-        </Text>
-        <View style={styles.flowRight}>
-          <TextInput
-            ref={this.props.generateTestHook('SearchPage.TextInput')}
-            style={styles.searchInput}
-            onChange={this._autocompletePlaces}
-            value={this.state.searchString}
-            placeholder='Search for your favourite place'/>
-            <Button
-            onPress={() => this.props.navigation.navigate('BookmarkList')}
-            color='#48BBEC'
-            title='View your places'/>
-            <View>
-              <SearchList style={styles.list}
-              navigation={this.props.navigation}
-              places={this.state.places}/>
-            </View>
-        </View>
-      </View>
+      <Card>
+
+        <CardItem>
+          <Text
+            ref={this.props.generateTestHook('SearchPage.Text')}>
+            I am looking for...
+          </Text>
+        </CardItem>
+
+        <CardItem>
+          <Item regular>
+            <Input
+              ref={this.props.generateTestHook('SearchPage.TextInput')}
+              onChange={this._autocompletePlaces}
+              value={this.state.searchString}
+              placeholder='Search for your favourite place'
+            />
+          </Item>
+        </CardItem>
+        <CardItem>
+          <SearchList
+            navigation={this.props.navigation}
+            places={this.state.places}/>
+        </CardItem>
+
+      </Card>
+
     )
   }
 }
