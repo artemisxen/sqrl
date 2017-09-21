@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Container, Footer, FooterTab, Button, Icon, Text } from 'native-base';
+import { Footer, FooterTab, Button, Icon, Text } from 'native-base';
 import firebase from 'firebase';
 
-export default class FooterNav extends Component {
+class FooterNav extends Component {
+
   render() {
     return (
         <Footer>
@@ -11,11 +12,17 @@ export default class FooterNav extends Component {
             <Icon name="pin" />
             <Text>Alerts</Text>
           </Button>
-            <Button vertical>
+            <Button
+              vertical
+              onPress={() => this.props.navigation.navigate("Search")}
+            >
               <Icon name="add" />
               <Text>Add</Text>
             </Button>
-            <Button vertical>
+            <Button
+              vertical
+              onPress={() => this.props.navigation.navigate("BookmarkList")}
+            >
               <Icon active name="map" />
               <Text>Places</Text>
             </Button>
@@ -28,3 +35,5 @@ export default class FooterNav extends Component {
     );
   }
 }
+
+export default FooterNav;

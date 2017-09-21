@@ -40,8 +40,14 @@ class LoginForm extends Component {
     }
 
     return (
-      <Button block onPress={this.onButtonPress.bind(this)}>
-        <Text>Log in</Text>
+      <Button
+        block
+        bordered
+        dark
+        onPress={this.onButtonPress.bind(this)}
+        style={{ backgroundColor: '#ff5050' }}
+      >
+        <Text style={{ color: '#ffffff' }}>Log in</Text>
       </Button>
     );
   }

@@ -5,6 +5,9 @@ import { Text, TextInput, View, Button, ActivityIndicator, Image, AlertIOS } fro
 import styles from "../styles/Styles.js";
 import MapView from 'react-native-maps';
 import { hook } from 'cavy';
+import FooterNav from './FooterNav';
+import SearchPage from './SearchPage';
+import BookmarkList from './BookmarkList';
 
 class ViewBookmark extends Component {
 

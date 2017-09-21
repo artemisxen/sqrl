@@ -8,9 +8,8 @@ import { Tester, TestHookStore } from 'cavy'
 import geofire from 'geofire';
 import SearchPlacesSpec from './specs/SearchPlacesSpec'
 import firebase from 'firebase';
-import Spinner from './components/Spinner';
-import LoginForm from './components/LoginForm';
 import FooterNav from './components/FooterNav';
+import Spinner from './components/Spinner';
 import Welcome from './components/Welcome';
 import { API_KEY,
   AUTH_DOMAIN,
@@ -83,7 +82,6 @@ class Sqrl extends Component {
       return (
             <Container>
               <App />
-              <FooterNav />
             </Container>
       );
       case false:

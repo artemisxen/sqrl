@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
-import { Container, Content, Header, Left, Right, Body, Title, Text, Button, Card, CardItem } from 'native-base';
+import { Image, Dimensions } from 'react-native';
+import { Container, Content, Text, Button, Card, CardItem } from 'native-base';
 import LoginForm from '../components/LoginForm';
 
 class WelcomeScreen extends Component {
@@ -9,19 +10,34 @@ class WelcomeScreen extends Component {
   }
 
   render() {
+    let {height, width} = Dimensions.get('window');
     return (
       <Container>
         <Content>
-          <Card>
+          <Card
+          style={{ justifyContent: 'center', alignItems: 'center', height: height, width: width }}
+          >
             <CardItem>
-              <Text>
-                Welcome to Sqrl
-              </Text>
+              <Image
+                source={require('../assets/img/logo.png')}
+                style={{ width: 161, height: 62, marginTop: -125 }}
+              />
             </CardItem>
+
+            <CardItem>
+              <Button
+                bordered
+                dark
+                style={{ backgroundColor: '#ff5050' }}
+                onPress={() => this.props.navigation.navigate('LoginForm')}
+              >
+                <Text style={{ color: '#ffffff' }}>
+                  Login
+                </Text>
+              </Button>
+            </CardItem>
+
           </Card>
-          <Button block onPress={() => this.props.navigation.navigate('LoginForm')}>
-            <Text>Login</Text>
-          </Button>
         </Content>
       </Container>
     );

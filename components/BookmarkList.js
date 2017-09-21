@@ -1,12 +1,15 @@
 'use strict';
 
 import React, { Component } from 'react';
-import {Text, TextInput, View, StyleSheet,ListView} from 'react-native';
+import { ListView, View } from 'react-native';
+import { Container, Card, CardItem, List, Body, Text } from 'native-base';
 import styles from "../styles/Styles.js";
 import MapView from 'react-native-maps';
 import { hook } from 'cavy';
 import firebase from 'firebase';
+import FooterNav from './FooterNav';
 import Bookmark from './Bookmark.js';
+import SearchPage from './SearchPage';
 
 class BookmarkList extends Component {
   constructor(props) {
@@ -66,33 +69,43 @@ class BookmarkList extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-      <View>
-      <MapView
-      style={styles.map}
-      initialRegion={{
-        latitude: 51.51734030000001,
-        longitude: -0.0732808,
-        latitudeDelta: 0.015,
-        longitudeDelta: 0.0121
-      }}
-      region={this.state.region}
-      onRegionChange={this.onRegionChange}
-      >
-      {this.state.markers.map(marker => (
-        <MapView.Marker
-        coordinate={marker.coordinates}
-        title={marker.title}
-        />
-      ))}
-      </MapView>
-      </View>
-        <ListView
-          enableEmptySections={true}
-          dataSource={this.state.dataSource}
-          renderRow={this._renderItem.bind(this)}
-          style={styles.listView}/>
-      </View>
+      <Container>
+        <Card>
+          <CardItem cardBody style={{ justifyContent: 'center', alignItems: 'center'}}>
+              <MapView
+                style={{ width: 250, height: 250 }}
+                initialRegion={{
+                  latitude: 51.51734030000001,
+                  longitude: -0.0732808,
+                  latitudeDelta: 0.015,
+                  longitudeDelta: 0.0121
+                }}
+                region={this.state.region}
+                onRegionChange={this.onRegionChange}
+                >
+                {this.state.markers.map(marker => (
+                  <MapView.Marker
+                  coordinate={marker.coordinates}
+                  title={marker.title}
+                  />
+                ))}
+              </MapView>
+          </CardItem>
+        </Card>
+
+        <Card>
+          <CardItem>
+              <ListView
+                enableEmptySections={true}
+                dataSource={this.state.dataSource}
+                renderRow={this._renderItem.bind(this)}
+              />
+          </CardItem>
+        </Card>
+        <FooterNav
+        navigation={this.props.navigation} />
+      </Container>
+
     );
   }
 }
