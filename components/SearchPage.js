@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { ActivityIndicator, View } from 'react-native';
-import { Card, CardItem, Text, Input, Item } from 'native-base';
+import { Card, CardItem, Text, Input, Item,Button,Body } from 'native-base';
 import RNGooglePlaces from 'react-native-google-places';
 import SearchList from './SearchList.js';
 import { hook } from 'cavy';
@@ -30,7 +30,13 @@ import { hook } from 'cavy';
   render() {
     return (
       <Card>
-
+      <CardItem>
+     <Body>
+       <Button block onPress={() => this.props.navigation.navigate('BookmarkList')}>
+         <Text>Your places</Text>
+       </Button>
+     </Body>
+     </CardItem>
         <CardItem>
           <Text
             ref={this.props.generateTestHook('SearchPage.Text')}>
